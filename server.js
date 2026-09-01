@@ -96,8 +96,19 @@ function persistSoon() {
   clearTimeout(saveTimer);
   saveTimer = setTimeout(() => {
     const temporary = `${DATA_FILE}.tmp`;
-    fs.writeFileSync(temporary, JSON.stringify([...conversations.values()], null, 2));
-    fs.renameSync(temporary, DATA_FILE);
+    try {
+      fs.writeFileSync(temporary, JSON.stringify([...conversations.values()], null, 2));
+      try {
+        fs.renameSync(temporary, DATA_FILE);
+      } catch (error) {
+        if (!['EPERM', 'EEXIST', 'EBUSY'].includes(error.code)) throw error;
+        fs.copyFileSync(temporary, DATA_FILE);
+        fs.unlinkSync(temporary);
+      }
+    } catch (error) {
+      console.error('Could not save conversation data:', error.message);
+      try { fs.unlinkSync(temporary); } catch {}
+    }
   }, 120);
 }
 
