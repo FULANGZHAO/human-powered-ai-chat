@@ -1,0 +1,20 @@
+{
+  "name": "human-powered-ai-chat",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A self-hosted AI-style chat interface powered by real-time human operators.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "check": "node --check server.js && node --check public/app.js && node --check public/admin.js && node --check tests/e2e.js",
+    "test": "node tests/e2e.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "ws": "^8.18.3"
+  }
+}

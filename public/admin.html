@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f6f8">
+  <title>{{APP_NAME}} · 人工控制台</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-page">
+  <section class="login-screen" id="loginScreen">
+    <form class="login-card" id="loginForm">
+      <div class="welcome-mark" aria-hidden="true">A</div>
+      <h1>人工控制台</h1>
+      <p>登录后查看用户问题并实时回复。</p>
+      <label for="password">管理员密码</label>
+      <div class="password-field">
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button id="togglePassword" type="button" aria-label="显示密码">显示</button>
+      </div>
+      <p class="form-error" id="loginError" role="alert"></p>
+      <button class="primary-button" type="submit">登录</button>
+    </form>
+  </section>
+
+  <div class="operator-shell hidden" id="operatorShell">
+    <aside class="queue-panel">
+      <header class="queue-header">
+        <div><span class="eyebrow">{{APP_NAME}}</span><h1>对话收件箱</h1></div>
+        <button class="icon-button" id="logoutButton" type="button" aria-label="退出登录" title="退出登录">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5H5v14h5M14 8l4 4-4 4M18 12H9"/></svg>
+        </button>
+      </header>
+      <div class="queue-tabs" role="tablist" aria-label="会话筛选">
+        <button class="queue-tab active" data-filter="all" type="button">全部 <span id="allCount">0</span></button>
+        <button class="queue-tab" data-filter="waiting" type="button">待回复 <span id="waitingCount">0</span></button>
+      </div>
+      <div class="queue-list" id="queueList"></div>
+    </aside>
+
+    <main class="operator-main">
+      <header class="operator-header">
+        <div>
+          <button class="icon-button operator-menu" id="operatorMenu" type="button" aria-label="打开会话列表">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+          <h2 id="operatorTitle">选择一个对话</h2>
+          <p id="operatorMeta">收到的新问题会实时出现在左侧</p>
+        </div>
+        <span class="status-pill" id="operatorStatus">未选择</span>
+      </header>
+      <section class="operator-conversation" id="operatorConversation">
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18 3 21v-4a9 9 0 1 1 4 1Z"/></svg>
+          <h3>等待用户提问</h3>
+          <p>选择会话后，即可查看上下文并开始人工回答。</p>
+        </div>
+      </section>
+      <form class="operator-composer" id="operatorComposer">
+        <div class="live-badge"><span></span>用户将实时看到你的输入</div>
+        <label class="sr-only" for="replyInput">输入回复</label>
+        <textarea id="replyInput" rows="4" maxlength="12000" placeholder="选择一个会话后开始回复…" disabled></textarea>
+        <div class="operator-actions">
+          <span id="characterCount">0 / 12000</span>
+          <button class="primary-button" id="replyButton" type="submit" disabled>
+            发送最终回答
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14-7-4 14-3-5-7-2Zm7 2 3-3"/></svg>
+          </button>
+        </div>
+      </form>
+    </main>
+    <div class="queue-scrim" id="queueScrim"></div>
+  </div>
+  <script src="admin.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+  <title>{{APP_NAME}}</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="chat-page">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="对话导航">
+      <div class="sidebar-top">
+        <button class="brand-button" type="button" aria-label="{{APP_NAME}} 首页">
+          <span class="brand-mark" aria-hidden="true">A</span>
+          <span>{{APP_NAME}}</span>
+        </button>
+        <button class="icon-button sidebar-close" id="closeSidebar" type="button" aria-label="关闭侧栏">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <button class="new-chat-button" id="newChat" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        新对话
+      </button>
+      <div class="history-label">最近</div>
+      <div class="history-item active" id="historyTitle">新对话</div>
+      <div class="sidebar-footer">
+        <div class="account-avatar" aria-hidden="true">访</div>
+        <div><strong>访客</strong><span>免费方案</span></div>
+      </div>
+    </aside>
+
+    <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+    <main class="chat-main">
+      <header class="chat-header">
+        <button class="icon-button menu-button" id="openSidebar" type="button" aria-label="打开侧栏">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <button class="model-selector" type="button">{{APP_NAME}} <span>▾</span></button>
+        <div class="connection-state" id="connectionState"><span></span>正在连接</div>
+      </header>
+
+      <section class="conversation" id="conversation" aria-live="polite">
+        <div class="welcome" id="welcome">
+          <div class="welcome-mark" aria-hidden="true">A</div>
+          <h1>有什么可以帮忙的？</h1>
+          <p>提出问题、梳理想法，或者从一个简单任务开始。</p>
+        </div>
+      </section>
+
+      <div class="composer-wrap">
+        <form class="composer" id="composer">
+          <label class="sr-only" for="messageInput">给 {{APP_NAME}} 发消息</label>
+          <textarea id="messageInput" rows="1" maxlength="8000" placeholder="给 {{APP_NAME}} 发消息" autocomplete="off"></textarea>
+          <div class="composer-actions">
+            <button class="icon-button attach-button" type="button" aria-label="添加附件" disabled>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+            <button class="send-button" id="sendButton" type="submit" aria-label="发送消息" disabled>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v14"/></svg>
+            </button>
+          </div>
+        </form>
+        <p class="composer-note">AI 可能会出错，请核查重要信息。</p>
+      </div>
+    </main>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+</html>
