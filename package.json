@@ -2,7 +2,7 @@
   "name": "human-powered-ai-chat",
   "version": "1.0.0",
   "private": true,
-  "description": "A self-hosted AI-style chat interface powered by real-time human operators.",
+  "description": "A self-hosted FakeAI prank chat where users see an AI interface while a human operator replies in real time.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
